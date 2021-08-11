@@ -17,16 +17,26 @@ const app = express();
       
     }
     else if (id) {
-      const head = {
+      if (id != undefined) {
+        
+        const head = {
             
             'Content-Type': 'video/mp4',
         };
+        
+          const video = await ytdl('https://www.youtube.com/watch?v=' + id
+          //, {quality: '133'}
+          )
         res.writeHead(200, head);
- ytdl('https://www.youtube.com/watch?v=' + id, {quality: 'lowest'}).pipe(res);
+        video.pipe(res);
+      }else{
+        
+      }
+      res.send('Invalid Video ID')
     
     }
   
     
 });
   
-  app.listen(3000)
+  app.listen(4000)
