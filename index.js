@@ -12,16 +12,18 @@ const app = express();
   app.get('/', async function (req, res) {
     
     let id = req.query.id;
-    if (id) {
+    if (!id) {
+      res.send('No Video ID')
+      
+    }
+    else if (id) {
       const head = {
             
             'Content-Type': 'video/mp4',
         };
         res.writeHead(200, head);
- ytdl('https://www.youtube.com/watch?v=' + id).pipe(res);
+ ytdl('https://www.youtube.com/watch?v=' + id, {quality: 'lowest'}).pipe(res);
     
-    }else{
-      res.send('No Video ID')
     }
   
     
