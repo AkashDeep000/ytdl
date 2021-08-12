@@ -22,6 +22,7 @@ const app = express();
         const head = {
             
             'Content-Type': 'video/mp4',
+            'Cache-Control': 'max-age=2592000'
         };
         
           const video = await ytdl('https://www.youtube.com/watch?v=' + id
